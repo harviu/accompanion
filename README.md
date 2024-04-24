@@ -30,9 +30,9 @@ If you get an error please install `git` by following the instructions [here](ht
 Check if `conda` is installed by typing in your terminal:
 
 ```shell
-git --version
+conda --version
 ```
-If you get an error please install `git` by following the instructions [here]([https://git-scm.com/downloads](https://docs.conda.io/en/latest/miniconda.html#installing)) according to your OS.
+If you get an error please install `conda` by following the instructions [here]([https://git-scm.com/downloads](https://docs.conda.io/en/latest/miniconda.html#installing)) according to your OS.
 
 
 ### Installation
@@ -66,7 +66,7 @@ If you have already installed the ACCompanion, i.e. already done the Setup steps
 ```shell
 conda activate accompanion
 ```
-If the accompanion enviroment is activated then you can follow the below instructions to try it out!
+If the ACCompanion environment is activated then you can follow the below instructions to try it out!
 
 
 
@@ -107,9 +107,18 @@ python ./bin/launch_acc.py --help
 
 To find out which MIDI input and output ports are available on your system, run the following command:
 ```shell
-python -c "import mido; print(mido.get_input_names()); print(mido.get_output_names())"
+python -c "import mido; print(f'Inputs: {mido.get_input_names()}'); print(f'Outputs: {mido.get_output_names()}')"
 ```
 
+**Example:**
+```shell
+Inputs: ['Midi Through:Midi Through Port-0 14:0']
+Outputs: ['Midi Through:Midi Through Port-0 14:0']
+```
+
+When running the ACCompanion, you can specify the MIDI input and output ports using the `--input` and `--output` flags, respectively.
+You don't have to include the full name of the port, just enough to uniquely identify it (usually avoid the last part after `:` particularly for Windows).
+You don't have to use the quotes for the port name if it doesn't contain spaces.
 
 ## Using the ACCompanion with a GUI
 

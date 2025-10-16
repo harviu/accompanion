@@ -444,6 +444,7 @@ class DummyRouter(object):
         self.input_port_names = {}
         self.output_port_names = {}
         self.open_ports_list = []
+        self.piece_name = "test"
 
         # the MIDI port name the accompanion listens at (port name)
         self.solo_input_to_accompaniment_port_name = None
@@ -467,9 +468,11 @@ class DummyRouter(object):
 
         self.open_ports()
 
-        self.acc_output_to_sound_port = self.assign_ports_by_name(
-            self.acc_output_to_sound_port_name, input=False
-        )
+        # self.acc_output_to_sound_port = self.assign_ports_by_name(
+        #     self.acc_output_to_sound_port_name, input=False
+        # )
+        # Using Fluidsynth as default output port
+        self.acc_output_to_sound_port = FluidsynthPlayer()
 
         self.MIDIPlayer_to_sound_port = self.assign_ports_by_name(
             self.MIDIPlayer_to_sound_port_name, input=False
@@ -487,11 +490,13 @@ class DummyRouter(object):
     def open_ports_by_name(self, try_name, input=True):
         return DummyPort()
 
+
     def open_ports(self):
         pass
 
     def close_ports(self):
         self.solo_input_to_accompaniment_port.active = False
+        
 
     def panic(self):
         pass
